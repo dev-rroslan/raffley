@@ -9,7 +9,8 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/raffley_web.ex",
-    "../lib/raffley_web/**/*.*ex"
+    "../lib/raffley_web/**/*.*ex",
+    "./svelte/**/*.svelte"
   ],
   theme: {
     extend: {

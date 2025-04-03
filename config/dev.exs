@@ -10,7 +10,6 @@ config :raffley, Raffley.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-
 config :raffley, Raffley.Mailer,
   adapter: Resend.Swoosh.Adapter,
   api_key: System.fetch_env!("RESEND")
@@ -32,7 +31,8 @@ config :raffley, RaffleyWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "Kd4Oe+f4sq+zukjUp4WKTJIhk4VxvsHqFCmdsc6+2qUuJJWdUhmkAFKr9Efh7vuI",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:raffley, ~w(--sourcemap=inline --watch)]},
+    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)],
+    # esbuild: {Esbuild, :install_and_run, [:raffley, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:raffley, ~w(--watch)]}
   ]
 

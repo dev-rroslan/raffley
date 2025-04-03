@@ -93,6 +93,8 @@ defmodule RaffleyWeb do
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
 
+      import LiveSvelte  # <-- Add this line
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end
