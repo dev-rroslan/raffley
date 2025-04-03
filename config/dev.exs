@@ -5,7 +5,7 @@ config :raffley, Raffley.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "raffley_dev",
+  database: "raffley",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
