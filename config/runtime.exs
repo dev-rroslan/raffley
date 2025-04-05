@@ -15,6 +15,7 @@ import Config
 #     PHX_SERVER=true bin/raffley start
 #
 # Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
+Dotenv.load()
 
 config :raffley, Raffley.Mailer,
   adapter: Resend.Swoosh.Adapter,
@@ -60,10 +61,11 @@ if config_env() == :prod do
   config :raffley, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :raffley, RaffleyWeb.Endpoint,
-    host: "www.applikasi.tech",
     server: true,
     url: [host: host, port: 443, scheme: "https"],
-    check_origin: ["https://applikasi.tech", "https://www.applikasi.tech", "http://localhost"],
+    check_origin: ["https://www.applikasi.tech", "https://applikasi.tech", "http://localhost:4001"],
+
+
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.

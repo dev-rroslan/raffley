@@ -60,7 +60,8 @@ defmodule Raffley.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:resend, "~> 0.4.4"},
-      {:live_svelte, "~> 0.15.0"}
+      {:live_svelte, "~> 0.15.0"},
+      {:dotenv, "~> 3.0"}
     ]
   end
 
