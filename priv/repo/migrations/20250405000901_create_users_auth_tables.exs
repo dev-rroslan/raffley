@@ -7,7 +7,7 @@ defmodule Raffley.Repo.Migrations.CreateUsersAuthTables do
     create table(:users) do
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
-      add :confirmed_at, :utc_datetime
+      add :confirmed_at, :utc_datetime, default: nil
       add :admin, :boolean, default: false, null: false
 
       timestamps(type: :utc_datetime)

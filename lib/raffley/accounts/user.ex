@@ -38,7 +38,7 @@ defmodule Raffley.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :admin])
+    |> cast(attrs, [:email, :password, :admin, :confirmed_at])
     |> validate_email(opts)
     |> validate_password(opts)
   end

@@ -18,3 +18,16 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+# config/prod.exs
+
+import Config
+
+# Override log level and backend for production
+config :logger,
+  level: :info,
+  backends: [{LoggerFileBackend, :file_log}] # Use a file backend for production
+
+config :logger, :file_log,
+  path: "/var/log/raffley.log",
+  level: :info
