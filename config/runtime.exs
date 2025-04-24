@@ -15,13 +15,7 @@ import Config
 #     PHX_SERVER=true bin/raffley start
 #
 # Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
-Dotenv.load()
 
-config :raffley, Raffley.Mailer,
-  adapter: Resend.Swoosh.Adapter,
-  api_key: System.fetch_env!("RESEND")
-
-config :swoosh, :api_client, Swoosh.ApiClient.Finch
 # script that automatically sets the env var above.
 if System.get_env("PHX_SERVER") do
   config :raffley, RaffleyWeb.Endpoint, server: true
@@ -34,6 +28,12 @@ if config_env() == :prod do
       environment variable DATABASE_URL is missing.
       For example: ecto://USER:PASS@HOST/DATABASE
       """
+
+  config :raffley, Raffley.Mailer,
+    adapter: Resend.Swoosh.Adapter,
+    api_key: System.fetch_env!("RESEND")
+
+  config :swoosh, :api_client, Swoosh.ApiClient.Finch
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
@@ -63,9 +63,11 @@ if config_env() == :prod do
   config :raffley, RaffleyWeb.Endpoint,
     server: true,
     url: [host: host, port: 443, scheme: "https"],
-    check_origin: ["https://www.applikasi.tech", "https://applikasi.tech", "http://localhost:4001"],
-
-
+    check_origin: [
+      "https://www.applikasi.tech",
+      "https://applikasi.tech",
+      "http://localhost:4001"
+    ],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
